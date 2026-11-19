@@ -743,6 +743,41 @@ html:fullscreen body.proker-active .site-footer{
     padding-top:8px!important;
   }
 }
+
+/* FIX: rapatkan tampilan Catatan saat mode fullscreen.
+   Hilangkan ruang minimum halaman dan jarak tambahan setelah header. */
+html:fullscreen body.notes-active .page{
+  min-height:0!important;
+  height:auto!important;
+  padding-top:18px!important;
+  padding-bottom:0!important;
+  margin:0!important;
+}
+html:fullscreen body.notes-active #notesView{
+  display:block!important;
+  margin-top:0!important;
+  padding-top:8px!important;
+}
+html:fullscreen body.notes-active .notes-heading{
+  margin-top:0!important;
+  padding-top:2px!important;
+}
+html:fullscreen body.notes-active .site-footer{
+  margin-top:12px!important;
+}
+@media(max-width:700px){
+  html:fullscreen body.notes-active .page{
+    min-height:0!important;
+    padding-top:10px!important;
+    padding-bottom:0!important;
+  }
+  html:fullscreen body.notes-active #notesView{
+    padding-top:4px!important;
+  }
+  html:fullscreen body.notes-active .notes-heading{
+    padding-top:0!important;
+  }
+}
 </style>
 
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
