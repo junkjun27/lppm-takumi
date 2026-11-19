@@ -750,6 +750,56 @@ html:fullscreen body.proker-active .site-footer{
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <meta name="theme-color" content="#f3f3ef">
 
+
+<style>
+/* Notes planner — weekly calendar */
+.notes-view{max-width:1440px;margin:0 auto;padding:22px 30px 46px;color:#252a27}
+.notes-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;padding:10px 0 22px;border-bottom:1px solid #aeb7aa}
+.notes-kicker{font-size:9px;letter-spacing:.16em;color:#7a8178;font-weight:700}
+.notes-heading h1{font-size:clamp(34px,5vw,52px);line-height:1;letter-spacing:-.06em;font-weight:500;margin:10px 0 8px}
+.notes-heading p{font-size:12px;color:#747b72;margin:0}
+.notes-count{display:flex;flex-direction:column;align-items:flex-end}
+.notes-count strong{font-size:38px;line-height:1;font-weight:500;letter-spacing:-.06em}
+.notes-count span{font-size:8px;letter-spacing:.15em;color:#7a8178;margin-top:6px}
+.notes-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 0}
+.notes-week-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.notes-week-nav button{height:34px;min-width:35px;border:1px solid #c5cbc1;background:transparent;color:#252a27;padding:0 11px;font:inherit;font-size:12px;cursor:pointer}
+.notes-week-nav button:hover{background:#34483a;color:#fff;border-color:#34483a}
+.notes-week-nav strong{font-size:12px;font-weight:600;margin-left:8px}
+.notes-auto-date{font-size:10px;color:#7b8279;letter-spacing:.04em}
+.notes-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid #aeb7aa;border-left:1px solid #cbd1c5;background:#f7f8f2}
+.notes-day{min-height:220px;border-right:1px solid #cbd1c5;border-bottom:1px solid #cbd1c5;padding:12px 10px;min-width:0}
+.notes-day.today{background:#eef1e8;box-shadow:inset 0 3px 0 #34483a}
+.notes-day-head{display:flex;justify-content:space-between;align-items:baseline;gap:4px;padding-bottom:9px;border-bottom:2px solid #252a27;margin-bottom:9px}
+.notes-day-head b{font-size:12px;font-weight:700}
+.notes-day-head span{font-size:10px;color:#92988f}
+.notes-day.today .notes-day-head span{color:#34483a;font-weight:700}
+.notes-day-add{border:0;background:transparent;color:#9aa096;font-size:10px;padding:2px 0;cursor:pointer}
+.notes-day-add:hover{color:#EF5B1B}
+.notes-entry{position:relative;padding:8px 8px 9px;margin:0 0 7px;background:#e8ece2;border-left:3px solid #34483a;overflow-wrap:anywhere}
+.notes-entry-title{font-size:11px;font-weight:700;margin-bottom:3px}
+.notes-entry-text{font-size:11px;line-height:1.45;white-space:pre-wrap}
+.notes-entry-time{font-size:9px;color:#7b8279;margin-top:6px}
+.notes-entry-delete{position:absolute;right:5px;top:3px;border:0;background:transparent;color:#7b8279;font-size:15px;cursor:pointer}
+.notes-empty{font-size:10px;color:#b0b5ac;padding:7px 0}
+.notes-compose{margin-top:26px;border:1px solid #aeb7aa;background:#f7f8f2;padding:20px}
+.notes-compose-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+.notes-compose h2{font-size:22px;font-weight:500;letter-spacing:-.04em;margin:5px 0 0}
+.notes-current-date{font-size:10px;color:#747b72}
+.notes-compose input,.notes-compose textarea{display:block;width:100%;max-width:none;border:1px solid #c5cbc1;border-radius:0;background:transparent;color:#252a27;padding:11px 12px;font:12px/1.5 "Avenir Next",Avenir,Arial,sans-serif;margin-bottom:9px}
+.notes-compose textarea{min-height:115px;resize:vertical}
+.notes-compose input:focus,.notes-compose textarea:focus{outline:1px solid #758575;border-color:#758575}
+.notes-compose-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.notes-compose-foot span{font-size:10px;color:#687368}
+.notes-compose-foot button{border:0;background:#34483a;color:white;padding:10px 15px;font-size:11px;cursor:pointer}
+.notes-compose-foot button:hover{background:#EF5B1B}
+body.notes-active .page>.achievement,body.notes-active .page>.hero,body.notes-active .page>.toolbar,body.notes-active .page>.legend,body.notes-active .page>.ganttbox,body.notes-active .page>.foot,body.notes-active .page>.notice,body.notes-active #prokerView{display:none!important}
+body.notes-active #notesView{display:block!important}
+body.notes-active .top .pill{display:none}
+@media(max-width:900px){.notes-calendar{grid-template-columns:repeat(4,minmax(0,1fr))}.notes-day{min-height:170px}}
+@media(max-width:600px){.notes-view{padding:16px 12px 30px}.notes-heading{align-items:flex-start}.notes-heading h1{font-size:38px}.notes-heading p{max-width:270px}.notes-count strong{font-size:30px}.notes-toolbar{align-items:flex-start;flex-direction:column}.notes-calendar{grid-template-columns:repeat(2,minmax(0,1fr))}.notes-day{min-height:150px;padding:10px 8px}.notes-compose{padding:14px}.notes-compose-head{align-items:flex-start;flex-direction:column;gap:8px}.notes-auto-date{font-size:9px}}
+</style>
+
 </head><body><main class="page">
 <div class="top"><div class="brand"><span class="lppm-mark" aria-label="LPPM" role="img">
 <svg viewBox="0 0 40 40" aria-hidden="true">
@@ -807,12 +857,32 @@ html:fullscreen body.proker-active .site-footer{
   <div class="proker-board-wrap"><div class="proker-board" id="prokerBoard"></div></div>
   <div class="proker-foot"><span>SUMBER: PROGRAM KERJA LEMBAGA / UNIT · OKTOBER 2026</span><span>Klik kegiatan untuk melihat detail dan menambahkan catatan.</span></div>
 </section>
+
+<section id="notesView" class="notes-view" aria-label="Catatan" style="display:none">
+ <div class="notes-heading">
+  <div><div class="notes-kicker">LPPM / RUANG KERJA PERSONAL</div><h1>Catatan</h1><p>Tempat menyimpan ide, pengingat, dan hal penting selama menjalankan kegiatan LPPM.</p></div>
+  <div class="notes-count"><strong id="notesCount">0</strong><span>CATATAN TERSIMPAN</span></div>
+ </div>
+ <div class="notes-toolbar">
+  <div class="notes-week-nav"><button type="button" id="notesPrev" aria-label="Minggu sebelumnya">‹</button><button type="button" id="notesToday">Hari ini</button><button type="button" id="notesNext" aria-label="Minggu berikutnya">›</button><strong id="notesWeekLabel"></strong></div>
+  <span class="notes-auto-date">Tanggal dan waktu tercatat otomatis</span>
+ </div>
+ <div class="notes-calendar" id="notesCalendar"></div>
+ <div class="notes-compose">
+  <div class="notes-compose-head"><div><div class="notes-kicker">CATATAN BARU</div><h2>Tulis sesuatu</h2></div><div class="notes-current-date" id="notesCurrentDate"></div></div>
+  <input id="noteTitle" type="text" maxlength="90" placeholder="Judul catatan (opsional)">
+  <textarea id="noteContent" placeholder="Apa yang ingin dicatat hari ini?"></textarea>
+  <div class="notes-compose-foot"><span id="notesMessage" role="status"></span><button type="button" id="addNote">Simpan Catatan <span>↗</span></button></div>
+ </div>
+</section>
+
 <div class="nav-scrim" id="navScrim"></div>
 <aside class="side-drawer" id="sideDrawer" aria-label="Navigasi">
   <div class="drawer-head"><div><small>LPPM / POLITEKNIK TAKUMI</small><strong>Navigasi</strong></div><button id="drawerClose" aria-label="Tutup menu">×</button></div>
   <div class="drawer-label">MENU UTAMA</div>
   <button class="drawer-link active" data-view="roadmap"><span>01</span><b>Roadmap Hibah</b><i>↗</i></button>
   <button class="drawer-link" data-view="proker"><span>02</span><b>Program Kerja LPPM</b><i>↗</i></button>
+  <button class="drawer-link" data-view="notes"><span>03</span><b>Catatan</b><i>↗</i></button>
   <div class="drawer-bottom">LPPM POLITEKNIK TAKUMI<br><small>Research · Community Service</small></div>
 </aside>
 <div class="proker-modal-backdrop" id="prokerModal">
@@ -827,7 +897,7 @@ html:fullscreen body.proker-active .site-footer{
 </div>
 
 <footer class="site-footer">
-  <div class="footer-top"><div><div class="footer-name">LPPM POLITEKNIK TAKUMI</div><div class="footer-caption"></div></div><button id="toggleEditMode" class="edit-mode-btn" type="button" aria-pressed="false"><span class="edit-label">MODE EDIT</span><span class="switch-ui" aria-hidden="true"><i></i></span></button></div>
+  <div class="footer-top"><div><div class="footer-name">LPPM POLITEKNIK TAKUMI</div><div class="footer-caption"></div></div><div class="footer-controls"><button id="toggleEditMode" class="edit-mode-btn" type="button" aria-pressed="false"><span class="edit-label">MODE EDIT</span><span class="switch-ui" aria-hidden="true"><i></i></span></button></div></div>
   <div class="footer-contact"><div><span>Alamat</span><a href="https://www.google.com/search?client=safari&hs=ZtgB&sca_esv=c2229c0bc96d5dc1&rls=en&sxsrf=AKL5yDgoMuEgAjQ3TJZar228cPASx1fLSw:1795008511291&q=politeknik+takumi+alamat&ludocid=15334792075171914473&sa=X&ved=2ahUKEwjnirzlz5GYAxX94jgGHWXDH78Q6BN6BAg4EAI" target="_blank" rel="noopener">Jl. Kp. Pegaulan, RT./RW 013/05, Sukaresmi, Cikarang Selatan, Kabupaten Bekasi, Jawa Barat 17530</a></div><div><span>Email</span><a href="mailto:lppm@takumi.ac.id">lppm@takumi.ac.id</a></div></div>
   <div class="footer-bottom">© LPPM Politeknik Takumi</div>
 </footer>
@@ -961,8 +1031,10 @@ document.getElementById("drawerClose").addEventListener("click",hideDrawer);
 document.getElementById("navScrim").addEventListener("click",hideDrawer);
 function switchView(view){
  document.body.classList.toggle("proker-active",view==="proker");
+ document.body.classList.toggle("notes-active",view==="notes");
  document.querySelectorAll(".drawer-link").forEach(b=>b.classList.toggle("active",b.dataset.view===view));
- document.querySelector(".top .pill").textContent=view==="proker"?"SEP 2026 — AGU 2027":"NOV 2026 — DES 2027";
+ document.querySelector(".top .pill").textContent=view==="proker"?"SEP 2026 — AGU 2027":view==="notes"?"CATATAN LPPM":"NOV 2026 — DES 2027";
+ if(view==="notes" && typeof renderNotesCalendar==="function") renderNotesCalendar();
  hideDrawer();window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll(".drawer-link").forEach(b=>b.addEventListener("click",()=>switchView(b.dataset.view)));
@@ -1063,6 +1135,58 @@ renderWorkPrograms();
 
 
 
+
+// Personal notes calendar. Each entry stores its creation timestamp automatically.
+const personalNotesKey="takumiLppmPersonalNotes2027";
+let notesWeekOffset=0;
+function readPersonalNotes(){try{return JSON.parse(localStorage.getItem(personalNotesKey)||"[]")}catch(e){return []}}
+function localDateKey(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${day}`}
+function mondayOfWeek(date){const d=new Date(date.getFullYear(),date.getMonth(),date.getDate());const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return d}
+function formatNoteDate(d,opts={day:"numeric",month:"short",year:"numeric"}){return d.toLocaleDateString("id-ID",opts)}
+function renderNotesCalendar(){
+ const root=document.getElementById("notesCalendar");if(!root)return;
+ const now=new Date(),todayKey=localDateKey(now),start=mondayOfWeek(now);start.setDate(start.getDate()+notesWeekOffset*7);
+ const end=new Date(start);end.setDate(start.getDate()+6);
+ document.getElementById("notesWeekLabel").textContent=formatNoteDate(start,{day:"numeric",month:"short"})+" — "+formatNoteDate(end,{day:"numeric",month:"short",year:"numeric"});
+ document.getElementById("notesCurrentDate").textContent="Hari ini · "+formatNoteDate(now,{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ const notes=readPersonalNotes().sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+ document.getElementById("notesCount").textContent=String(notes.length);root.innerHTML="";
+ const days=["Sen","Sel","Rab","Kam","Jum","Sab","Min"];
+ for(let i=0;i<7;i++){
+  const date=new Date(start);date.setDate(start.getDate()+i);const key=localDateKey(date);
+  const card=document.createElement("div");card.className="notes-day"+(key===todayKey?" today":"");
+  const head=document.createElement("div");head.className="notes-day-head";
+  const dayName=document.createElement("b");dayName.textContent=days[i]+" · "+date.getDate()+" "+date.toLocaleDateString("id-ID",{month:"short"});
+  const dayTag=document.createElement("span");dayTag.textContent=key===todayKey?"HARI INI":date.toLocaleDateString("id-ID",{weekday:"short"}).toUpperCase();
+  head.append(dayName,dayTag);card.append(head);
+  const dayNotes=notes.filter(n=>n.date===key);
+  if(!dayNotes.length){const empty=document.createElement("div");empty.className="notes-empty";empty.textContent="Belum ada catatan";card.append(empty)}
+  dayNotes.forEach(note=>{
+   const item=document.createElement("article");item.className="notes-entry";
+   const title=document.createElement("div");title.className="notes-entry-title";title.textContent=note.title||"Catatan";
+   const body=document.createElement("div");body.className="notes-entry-text";body.textContent=note.content;
+   const time=document.createElement("div");time.className="notes-entry-time";time.textContent=new Date(note.createdAt).toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"});
+   const del=document.createElement("button");del.className="notes-entry-delete";del.type="button";del.textContent="×";del.title="Hapus catatan";del.setAttribute("aria-label","Hapus catatan");
+   del.addEventListener("click",()=>{if(!confirm("Hapus catatan ini?"))return;const updated=readPersonalNotes().filter(n=>n.id!==note.id);localStorage.setItem(personalNotesKey,JSON.stringify(updated));renderNotesCalendar()});
+   item.append(del,title,body,time);card.append(item);
+  });
+  const add=document.createElement("button");add.className="notes-day-add";add.type="button";add.textContent="+ Tambah";add.addEventListener("click",()=>{document.getElementById("noteContent").focus();document.getElementById("notesMessage").textContent="Catatan baru akan diberi tanggal saat disimpan."});card.append(add);
+  root.append(card);
+ }
+}
+document.getElementById("notesPrev").addEventListener("click",()=>{notesWeekOffset--;renderNotesCalendar()});
+document.getElementById("notesNext").addEventListener("click",()=>{notesWeekOffset++;renderNotesCalendar()});
+document.getElementById("notesToday").addEventListener("click",()=>{notesWeekOffset=0;renderNotesCalendar()});
+document.getElementById("addNote").addEventListener("click",()=>{
+ const content=document.getElementById("noteContent").value.trim(),title=document.getElementById("noteTitle").value.trim(),msg=document.getElementById("notesMessage");
+ if(!content){msg.textContent="Isi catatan terlebih dahulu.";document.getElementById("noteContent").focus();return}
+ const createdAt=new Date().toISOString(),now=new Date(createdAt),notes=readPersonalNotes();
+ notes.push({id:String(Date.now())+"-"+Math.random().toString(36).slice(2,7),title,content,createdAt,date:localDateKey(now)});
+ try{localStorage.setItem(personalNotesKey,JSON.stringify(notes));document.getElementById("noteTitle").value="";document.getElementById("noteContent").value="";msg.textContent="Catatan tersimpan · "+now.toLocaleString("id-ID",{dateStyle:"medium",timeStyle:"short"});notesWeekOffset=0;renderNotesCalendar()}
+ catch(e){msg.textContent="Catatan gagal disimpan. Periksa penyimpanan browser."}
+});
+renderNotesCalendar();
+
 // Supabase cloud sync: one authenticated owner across the user's devices.
 (function(){
  const SUPABASE_URL = "https://vxgbgvlbbrsnswoueeny.supabase.co";
@@ -1072,7 +1196,8 @@ renderWorkPrograms();
   "takumiGrantRoadmapPrograms2027":"grant_programs",
   "takumiGrantRoadmapNotes2027":"grant_notes",
   "takumiGrantAchievement2027":"achievement",
-  "takumiLppmWorkProgramNotes2026":"proker_notes"
+  "takumiLppmWorkProgramNotes2026":"proker_notes",
+  "takumiLppmPersonalNotes2027":"personal_notes"
  };
  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
  let currentUser = null, suppressCloud = false, booted = false;
@@ -1092,10 +1217,14 @@ renderWorkPrograms();
  </div>`;
  document.body.appendChild(overlay);
  const style=document.createElement('style');
- style.textContent=`#cloudAuthGate{position:fixed;inset:0;z-index:99999;background:#eef1e8;display:flex;align-items:center;justify-content:center;padding:20px;font-family:"Avenir Next",Avenir,Arial,sans-serif;color:#252b27}#cloudAuthGate[hidden]{display:none}.cloud-auth-card{width:min(420px,100%);background:#f7f8f2;border:1px solid #cbd1c5;padding:30px 28px;box-shadow:0 18px 55px #1c251b18}.cloud-auth-kicker{font-size:10px;letter-spacing:.16em;color:#68796a;font-weight:700}.cloud-auth-card h2{font-size:25px;font-weight:500;letter-spacing:-.04em;margin:12px 0 8px}.cloud-auth-card p{font-size:13px;line-height:1.6;color:#697169;margin:0 0 22px}.cloud-auth-card label{display:block;font-size:11px;font-weight:700;margin:13px 0 6px}.cloud-auth-card input{display:block;width:100%;box-sizing:border-box;border:1px solid #c3cbbf;padding:12px;font:14px inherit;background:#fff}.cloud-auth-card button{width:100%;margin-top:19px;padding:12px;border:0;background:#34483a;color:white;font-weight:700;cursor:pointer}.cloud-auth-card button:disabled{opacity:.6;cursor:wait}#cloudAuthMessage{font-size:12px;line-height:1.5;color:#9a4b35;margin-top:12px;min-height:18px}#cloudSyncStatus{position:fixed;right:16px;bottom:14px;z-index:9998;background:#34483a;color:white;padding:8px 11px;font:11px "Avenir Next",Arial,sans-serif;box-shadow:0 3px 14px #0002}#cloudSignOut{position:fixed;right:16px;top:16px;z-index:9997;border:1px solid #aeb7aa;background:#f7f8f2;color:#354038;padding:7px 10px;font:11px "Avenir Next",Arial,sans-serif;cursor:pointer}`;
+ style.textContent=`#cloudAuthGate{position:fixed;inset:0;z-index:99999;background:#eef1e8;display:flex;align-items:center;justify-content:center;padding:20px;font-family:"Avenir Next",Avenir,Arial,sans-serif;color:#252b27}#cloudAuthGate[hidden]{display:none}.cloud-auth-card{width:min(420px,100%);background:#f7f8f2;border:1px solid #cbd1c5;padding:30px 28px;box-shadow:0 18px 55px #1c251b18}.cloud-auth-kicker{font-size:10px;letter-spacing:.16em;color:#68796a;font-weight:700}.cloud-auth-card h2{font-size:25px;font-weight:500;letter-spacing:-.04em;margin:12px 0 8px}.cloud-auth-card p{font-size:13px;line-height:1.6;color:#697169;margin:0 0 22px}.cloud-auth-card label{display:block;font-size:11px;font-weight:700;margin:13px 0 6px}.cloud-auth-card input{display:block;width:100%;box-sizing:border-box;border:1px solid #c3cbbf;padding:12px;font:14px inherit;background:#fff}.cloud-auth-card button{width:100%;margin-top:19px;padding:12px;border:0;background:#34483a;color:white;font-weight:700;cursor:pointer}.cloud-auth-card button:disabled{opacity:.6;cursor:wait}#cloudAuthMessage{font-size:12px;line-height:1.5;color:#9a4b35;margin-top:12px;min-height:18px}#cloudSyncStatus{position:fixed;right:16px;bottom:14px;z-index:9998;background:#34483a;color:white;padding:8px 11px;font:11px "Avenir Next",Arial,sans-serif;box-shadow:0 3px 14px #0002}.footer-controls{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+ #cloudSignOut{position:static;z-index:1;flex:0 0 36px;width:36px;height:36px;box-sizing:border-box;padding:0;display:none;align-items:center;justify-content:center;border:1px solid #34483a;border-radius:2px;background:#34483a;color:#fff;font:22px/1 Arial,sans-serif;cursor:pointer;vertical-align:middle}
+ #cloudSignOut:hover{border-color:#EF5B1B;background:#EF5B1B;color:#fff}
+ #cloudSignOut:focus-visible{outline:2px solid #EF5B1B;outline-offset:3px}
+ @media(max-width:700px){#cloudSignOut{flex-basis:34px;width:34px;height:34px;font-size:21px}}`;
  document.head.appendChild(style);
  const status=document.createElement('div');status.id='cloudSyncStatus';status.textContent='Data cloud siap';document.body.appendChild(status);
- const signOut=document.createElement('button');signOut.id='cloudSignOut';signOut.textContent='Keluar';signOut.style.display='none';document.body.appendChild(signOut);
+ const signOut=document.createElement('button');signOut.id='cloudSignOut';signOut.textContent='×';signOut.setAttribute('aria-label','Keluar dari akun');signOut.title='Keluar dari akun';signOut.style.display='none';const footerControls=document.querySelector('.footer-controls');if(footerControls){footerControls.appendChild(signOut);}else{document.body.appendChild(signOut);}
  function message(t){document.getElementById('cloudAuthMessage').textContent=t||'';}
  function setStatus(t){status.textContent=t;}
  async function saveCloud(localKey, value){
@@ -1140,7 +1269,7 @@ renderWorkPrograms();
    data.forEach(p=>{if(savedPrograms[p[0]])Object.assign(p,savedPrograms[p[0]])});
    const savedAchievement=JSON.parse(localStorage.getItem('takumiGrantAchievement2027')||'null');
    if(savedAchievement) achievement=savedAchievement;
-   draw();renderAchievement();renderWorkPrograms();
+   draw();renderAchievement();renderWorkPrograms();renderNotesCalendar();
    overlay.hidden=true;signOut.style.display='block';
    setStatus('Tersinkron · '+user.email);
    booted=true;
