@@ -778,6 +778,31 @@ html:fullscreen body.notes-active .site-footer{
     padding-top:0!important;
   }
 }
+/* FIX STRUKTURAL:
+   Header berada di main.page, sedangkan #notesView adalah sibling setelahnya.
+   Saat Catatan aktif, main.page tidak boleh tetap setinggi satu viewport. */
+body.notes-active > main.page{
+  min-height:0!important;
+  height:auto!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
+body.notes-active > #notesView{
+  margin-top:0!important;
+}
+html:fullscreen body.notes-active > main.page,
+html:-webkit-full-screen body.notes-active > main.page{
+  min-height:0!important;
+  height:auto!important;
+  padding-top:10px!important;
+  padding-bottom:0!important;
+  margin:0!important;
+}
+html:fullscreen body.notes-active > #notesView,
+html:-webkit-full-screen body.notes-active > #notesView{
+  margin-top:0!important;
+  padding-top:8px!important;
+}
 </style>
 
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
